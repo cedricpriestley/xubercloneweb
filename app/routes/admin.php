@@ -1,0 +1,60 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/', 'AdminController@dashboard')->name('index');
+Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
+
+Route::group(['as' => 'dispatcher.', 'prefix' => 'dispatcher'], function () {
+	Route::get('/', 'DispatcherController@index')->name('index');
+	Route::post('/', 'DispatcherController@store')->name('store');
+	Route::get('/trips', 'DispatcherController@trips')->name('trips');
+	Route::get('/trips/{trip}/{provider}', 'DispatcherController@assign')->name('assign');
+	Route::get('/users', 'DispatcherController@users')->name('users');
+	Route::get('/providers', 'DispatcherController@providers')->name('providers');
+});
+
+Route::resource('user', 'Resource\UserResource');
+Route::resource('provider', 'Resource\ProviderResource');
+Route::resource('document', 'Resource\DocumentResource');
+Route::resource('service', 'Resource\ServiceResource');
+Route::resource('promocode', 'Resource\PromocodeResource');
+
+Route::group(['as' => 'provider.'], function () {
+    Route::get('review/provider', 'AdminController@provider_review')->name('review');
+    Route::get('provider/{id}/approve', 'Resource\ProviderResource@approve')->name('approve');
+    Route::get('provider/{id}/disapprove', 'Resource\ProviderResource@disapprove')->name('disapprove');
+    Route::get('provider/{id}/request', 'Resource\ProviderResource@request')->name('request');
+    Route::resource('provider/{provider}/document', 'Resource\ProviderDocumentResource');
+});
+
+Route::get('review/user', 'AdminController@user_review')->name('user.review');
+Route::get('user/{id}/request', 'Resource\UserResource@request')->name('user.request');
+
+Route::get('map', 'AdminController@map_index')->name('map.index');
+Route::get('map/ajax', 'AdminController@map_ajax')->name('map.ajax');
+
+Route::get('settings', 'AdminController@settings')->name('settings');
+Route::post('settings/store', 'AdminController@settings_store')->name('settings.store');
+Route::get('settings/payment', 'AdminController@settings_payment')->name('settings.payment');
+Route::post('settings/payment', 'AdminController@settings_payment_store')->name('settings.payment.store');
+
+Route::get('profile', 'AdminController@profile')->name('profile');
+Route::post('profile', 'AdminController@profile_update')->name('profile.update');
+
+Route::get('password', 'AdminController@password')->name('password');
+Route::post('password', 'AdminController@password_update')->name('password.update');
+
+Route::get('payment', 'AdminController@payment')->name('payment');
+
+Route::get('help', 'AdminController@help')->name('help');
+
+Route::resource('requests', 'Resource\TripResource');
+Route::get('requests/scheduled', 'Resource\TripResource@scheduled')->name('requests.scheduled');
+
+Route::get('push', 'AdminController@push_index')->name('push.index');
+Route::post('push', 'AdminController@push_store')->name('push.store');
