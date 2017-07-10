@@ -11,7 +11,7 @@ use Hash;
 use Storage;
 use Setting;
 use Exception;
-
+use App\Http\Controllers\ProviderResources\TripController;
 use Carbon\Carbon;
 use App\Http\Controllers\SendPushNotification;
 
@@ -299,9 +299,8 @@ class UserApiController extends Controller
         $latitude = $request->s_latitude;
         $longitude = $request->s_longitude;
 
-        $Providers = Provider::whereIn('id', $ActiveProviders)
-            ->where('status', 'approved')
-            ->whereRaw("(1.609344 * 3956 * acos( cos( radians('$latitude') ) * cos( radians(latitude) ) * cos( radians(longitude) - radians('$longitude') ) + sin( radians('$latitude') ) * sin( radians(latitude) ) ) ) <= $distance")
+        $Providers = Provider::where('id', 1)
+            //->whereRaw("(1.609344 * 3956 * acos( cos( radians('$latitude') ) * cos( radians(latitude) ) * cos( radians(longitude) - radians('$longitude') ) + sin( radians('$latitude') ) * sin( radians(latitude) ) ) ) <= $distance")
             ->get();
 
         // List Providers who are currently busy and add them to the filter list.
@@ -422,7 +421,7 @@ class UserApiController extends Controller
                 }
             }
 
-            if(in_array($UserRequest->status, ['SEARCHING','STARTED','ARRIVED','SCHEDULED'])) {
+            //if(in_array($UserRequest->status, ['SEARCHING','STARTED','ARRIVED','SCHEDULED'])) {
 
                 $UserRequest->status = 'CANCELLED';
                 $UserRequest->cancelled_by = 'USER';
@@ -443,9 +442,10 @@ class UserApiController extends Controller
                 if($request->ajax()) {
                     return response()->json(['message' => trans('api.ride.ride_cancelled')]); 
                 }else{
-                    return redirect('dashboard')->with('flash_success','Request Cancelled Successfully');
+                    return redirect('dashboard')->with('flash_success','Order Cancelled');
                 }
 
+            /*
             } else {
                 if($request->ajax()) {
                     return response()->json(['error' => trans('api.ride.already_onride')], 500); 
@@ -453,6 +453,7 @@ class UserApiController extends Controller
                     return back()->with('flash_error', 'Service Already Started!');
                 }
             }
+            */
         }
 
         catch (ModelNotFoundException $e) {
@@ -473,18 +474,119 @@ class UserApiController extends Controller
 
     public function request_status_check() {
 
-        try{
-            $check_status = ['CANCELLED', 'SCHEDULED'];
+      try{
+        $check_status = ['CANCELLED', 'SCHEDULED'];
 
-            $UserRequests = UserRequests::UserRequestStatusCheck(Auth::user()->id, $check_status)
-                                        ->get()
-                                        ->toArray();
+        $UserRequests = UserRequests::UserRequestStatusCheck(Auth::user()->id, $check_status)
+        ->get()
+        ->toArray();
 
-            return response()->json(['data' => $UserRequests]);
+        //$UserRequest = UserRequests::findOrFail($UserRequests[0]['id']);
 
-        } catch (Exception $e) {
-            return response()->json(['error' => trans('api.something_went_wrong')], 500);
+        if (true) {
+          $id = $UserRequests[0]['id'];
+
+          try {
+
+            $UserRequest = UserRequests::findOrFail($id);
+
+            if($UserRequest->status == "SEARCHING") {
+
+              $UserRequest->provider_id = Auth::user()->id;
+
+              if($UserRequest->schedule_at != ""){
+                RequestFilter::where('request_id',$UserRequest->id)->where('provider_id',Auth::user()->id)->update(['status' => 2]);
+
+                $UserRequest->status = "SCHEDULED";
+                $UserRequest->save();
+
+              } else{
+
+                $UserRequest->status = "STARTED";
+                $UserRequest->save();
+                ProviderService::where('provider_id',$UserRequest->provider_id)->update(['status' =>'riding']);
+
+                $Filters = RequestFilter::where('request_id', $UserRequest->id)->where('provider_id', '!=', Auth::user()->id)->get();
+                // dd($Filters->toArray());
+                foreach ($Filters as $Filter) {
+                  $Filter->delete();
+                }
+                $UserRequest->status = 'DROPPED';
+                $tripController = new TripController();
+                $invoice = $tripController->invoice($id);
+
+                ProviderService::where('provider_id',$UserRequest->provider_id)->update(['status' =>'active']);
+              }
+            } elseif($UserRequest->status == 'STARTED'){
+              $UserRequest->status = 'DROPPED';
+              $tripController = new TripController();
+              $invoice = $tripController->invoice($id);
+
+              ProviderService::where('provider_id',$UserRequest->provider_id)->update(['status' =>'active']);
+
+            } elseif($UserRequest->status == 'COMPLETED'){
+              $UserRequest->user_rated = 1;
+              $UserRequest->provider_rated = 1;
+              $UserRequest->save();
+              
+              $UserAPI = new UserApiController();
+              $services = $UserAPI->services();
+              return view('user.dashboard',compact('services'));
+            }
+
+            //$UserRequest->user_rated = 1;            
+
+            $UserRequest->save();
+
+          } catch (ModelNotFoundException $e) {
+            return response()->json(['error' => 'Unable to accept, Please try again later']);
+          } catch (Exception $e) {
+            return response()->json(['error' => 'Connection Error']);
+          }           
+          //$tripController = new TripController();
+          //$tripController->accept($UserRequests[0], $UserRequests[0]['id']);
+          //  $tripController = new TripController();
+          //$tripController.accept($UserRequests[0], $UserRequests[0]['id']);
+          //print "<pre>";
+          //var_dump($UserRequests[0]);
+          //print "</pre>";
+          //RequestFilter::where('request_id',$UserRequest->id)->where('provider_id',Auth::user()->id)->update(['status' => 2]);
+          //exit;
+          /*
+          $UserRequest->status = "STARTED";
+          $UserRequest->save();
+
+
+          ProviderService::where('provider_id',$UserRequest->provider_id)->update(['status' =>'riding']);
+
+          $Filters = RequestFilter::where('request_id', $UserRequest->id)->where('provider_id', '!=', Auth::user()->id)->get();
+          //dd($Filters->toArray());
+          foreach ($Filters as $Filter) {
+          $Filter->delete();
+          }
+
+          /*
+          if ($UserRequest['status'] == "STARTED") {
+          $UserRequest->status = "ARRIVED";
+          $UserRequest->save();            
+          }
+
+          if ($UserRequest['status'] == "ARRIVED") {
+          $UserRequest->status = "PICKEDUP";
+          $UserRequest->save();            
+          }
+
+          if ($UserRequest['status'] == "PICKEDUP") {
+          $UserRequest->status = "DROPPED";
+          $UserRequest->save();            
+          }
+          */
         }
+        return response()->json(['data' => $UserRequests]);
+
+      } catch (Exception $e) {
+        return response()->json(['error' => trans('api.something_went_wrong')], 500);
+      }
     }
 
     /**

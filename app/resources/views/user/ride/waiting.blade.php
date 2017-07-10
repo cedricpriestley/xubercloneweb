@@ -14,37 +14,8 @@
 		</div>
 		
 		<div class="row no-margin">
-		        <div class="col-md-6" id="container" >
+		        <div class="col-md-12" id="container" >
 		    		<p>Loading...</p>                             
-		        </div>
-
-		        <div class="col-md-6">
-		            <dl class="dl-horizontal left-right">
-		                <dt>@lang('user.request_id')</dt>
-		                <dd>{{$request->id}}</dd>
-		                <dt>@lang('user.time')</dt>
-		                <dd>{{date('d-m-Y H:i A',strtotime($request->assigned_at))}}</dd>
-		            </dl> 
-		            <div class="user-request-map">
-		                <div class="from-to row no-margin">
-		                    <div class="from">
-		                        <h5>FROM</h5>
-		                        <p>{{$request->s_address}}</p>
-		                    </div>
-		                    <div class="to">
-		                        <h5>TO</h5>
-		                        <p>{{$request->d_address}}</p>
-		                    </div>
-		                    <div class="type">
-		                    	<h5>TYPE</h5>
-		                        <p>{{$request->service_type->name}}</p>
-		                    </div>
-		                </div>
-		                <?php 
-		                    $map_icon = asset('asset/img/marker-start.png');
-		                    $static_map = "https://maps.googleapis.com/maps/api/staticmap?autoscale=1&size=600x450&maptype=roadmap&format=png&visual_refresh=true&markers=icon:".$map_icon."%7C".$request->s_latitude.",".$request->s_longitude."&markers=icon:".$map_icon."%7C".$request->d_latitude.",".$request->d_longitude."&path=color:0x191919|weight:8|".$request->s_latitude.",".$request->s_longitude."|".$request->d_latitude.",".$request->d_longitude."&key=".env('GOOGLE_MAP_KEY'); ?>
-		                    <div class="map-static" style="background-image: url({{$static_map}});"></div>                               
-		            </div>                          
 		        </div>
 		</div>
 	</div>
@@ -107,7 +78,7 @@
 
 			changeLabel : function(){
 				if(this.props.checkState == undefined){
-					window.location.reload();
+						
 				}else if(this.props.checkState != ""){
 
 					if(this.props.checkState.status == 'SEARCHING'){
@@ -123,8 +94,8 @@
 					}else if(this.props.checkState.status == 'DROPPED'){
 						$("#ride_status").text("@lang('user.ride.waiting_payment')");
 					}else if(this.props.checkState.status == 'COMPLETED'){
-						var provider_name = this.props.checkState.provider.first_name;
-						$("#ride_status").text("@lang('user.ride.rate_and_review') " +provider_name );
+						//var provider_name = this.props.checkState.provider.first_name;
+						//$("#ride_status").text("@lang('user.ride.rate_and_review') " +provider_name );
 					}
 					setTimeout(function(){
 						$('.rating').rating();
@@ -222,23 +193,24 @@
 		            		<h5><strong>@lang('user.ride.ride_details')</strong></h5>
 		            	<div className="driver-details">
 			            	<dl className="dl-horizontal left-right">
-				                <dt>@lang('user.driver_name')</dt>
-				                <dd>{this.props.checkState.provider.first_name} {this.props.checkState.provider.last_name}</dd>
-				                <dt>@lang('user.service_number')</dt>
-				                <dd>{this.props.checkState.provider_service.service_number}</dd>
-				                <dt>@lang('user.service_model')</dt>
-				                <dd>{this.props.checkState.provider_service.service_model}</dd>
-				                <dt>@lang('user.driver_rating')</dt>
-				                <dd>
-				                	<div className="rating-outer">
-			                            <input type="hidden" value={this.props.checkState.provider.rating} name="rating" className="rating"/>
-			                        </div>
-				                </dd>
-				                <dt>@lang('user.payment_mode')</dt>
-				                <dd>{this.props.checkState.payment_mode}</dd>
+											<dt>Solicitation #</dt>
+											<dd>{{ $service->solnbr }}</dd>
+											<dt>Posted Date</dt>
+											<dd>{{ $service->date }}</dd>
+											<dt>Type</dt>
+											<dd>{{ $service->type }}</dd>
+											<dt>Subject</dt>
+											<dd>{{ $service->subject }}</dd>
+											<dt>Agency</dt>
+											<dd>{{ $service->agency }}</dd>
+											<dt>Office</dt>
+											<dd>{{ $service->office }}</dd>
+											<dt>Location</dt>
+											<dd>{{ $service->location }}</dd>
+											<dt>Set-aside</dt>
+											<dd>{{ $service->setaside }}</dd>
 				            </dl> 
 			            </div>
-
 		            </form>
 				);
 			}
@@ -347,7 +319,8 @@
                             <dt>@lang('user.ride.base_price')</dt>
                             <dd>{this.props.currency}{this.props.checkState.payment.fixed}</dd>
                             <dt>@lang('user.ride.tax_price')</dt>
-                            <dd>{this.props.currency}{this.props.checkState.payment.tax}</dd>
+                            <dd>
+                            {this.props.checkState.payment.tax}</dd>
                             <dt>@lang('user.ride.distance_price')</dt>
                             <dd>{this.props.currency}{this.props.checkState.payment.distance}</dd>
                             {this.props.checkState.use_wallet ?
@@ -386,55 +359,47 @@
 		                <p>@lang('user.ride.dropped_ride')</p>
 		            </div>
 		            	<br/>
-		            	<h5><strong>@lang('user.ride.ride_details')</strong></h5>
-		            	<dl className="dl-horizontal left-right">
-		            		<dt>@lang('user.driver_name')</dt>
-			                <dd>{this.props.checkState.provider.first_name} {this.props.checkState.provider.last_name}</dd>
-			                <dt>@lang('user.service_number')</dt>
-				                <dd>{this.props.checkState.provider_service.service_number}</dd>
-				                <dt>@lang('user.service_model')</dt>
-				                <dd>{this.props.checkState.provider_service.service_model}</dd>
-			                <dt>@lang('user.driver_rating')</dt>
-			                <dd>
-			                	<div className="rating-outer">
-		                            <input type="hidden" value={this.props.checkState.provider.rating} name="rating" className="rating"/>
-		                        </div>
-			                </dd>
-		            		<dt>@lang('user.payment_mode')</dt>
-                        	<dd>{this.props.checkState.payment_mode}</dd>
-                        	<dt>@lang('user.ride.km')</dt>
-                        	<dd>{this.props.checkState.distance} kms</dd>
-                        </dl>
 		            	<h5><strong>@lang('user.ride.invoice')</strong></h5>
 		            	<input type="hidden" name="request_id" value={this.props.checkState.id} />
 		            	<dl className="dl-horizontal left-right">
+		            	<dt>@lang('user.time')</dt>
+		                <dd>{{date('d-m-Y H:i A',strtotime($request->assigned_at))}}</dd>
+		                <dt>@lang('user.request_id')</dt>
+		                <dd>{{$request->id}}</dd>
                             <dt>@lang('user.ride.base_price')</dt>
-                            <dd>{this.props.currency}{this.props.checkState.payment.fixed}</dd>
+                            <dd>${this.props.checkState.payment.fixed}.00</dd>
                             <dt>@lang('user.ride.tax_price')</dt>
-                            <dd>{this.props.currency}{this.props.checkState.payment.tax}</dd>
-                            <dt>@lang('user.ride.distance_price')</dt>
-                            <dd>{this.props.currency}{this.props.checkState.payment.distance}</dd>
-                            <dt>@lang('user.ride.total')</dt>
-                            {this.props.checkState.use_wallet ?
-								<span>
-								<dt>@lang('user.ride.detection_wallet')</dt>
-                            	<dd>{this.props.currency}{this.props.checkState.payment.wallet}</dd>  
-                            	</span>
-                            : ''
-                            }
-                            {this.props.checkState.payment.discount ?
-								<span>
-								<dt>@lang('user.ride.promotion_applied')</dt>
-                            	<dd>{this.props.currency}{this.props.checkState.payment.discount}</dd>  
-                            	</span>
-                            : ''
-                            }
-                            <dd>{this.props.currency}{this.props.checkState.payment.total}</dd> 
-                            <dt className="big">@lang('user.ride.amount_paid')</dt>
-                            <dd className="big">{this.props.currency}{this.props.checkState.payment.total}</dd>
+                            <dd>${this.props.checkState.payment.tax}.00</dd>
+                            <dt className="big">@lang('user.ride.total')</dt>
+                            <dd className="big">${this.props.checkState.payment.total}.00</dd>
+                        </dl>		            	
+		            	<h5><strong>@lang('user.ride.ride_details')</strong></h5>
+		            	<dl className="dl-horizontal left-right">
+	                        <dt>Solicitation #</dt>
+	                        <dd>{{ $service->solnbr }}</dd>
+	                        <dt>Posted Date</dt>
+	                        <dd>{{ $service->date }}</dd>
+	                        <dt>Type</dt>
+	                        <dd>{{ $service->type }}</dd>
+	                        <dt>Subject</dt>
+	                        <dd>{{ $service->subject }}</dd>
+	                        <dt>Agency</dt>
+	                        <dd>{{ $service->agency }}</dd>
+	                        <dt>Office</dt>
+	                        <dd>{{ $service->office }}</dd>
+	                        <dt>Location</dt>
+	                        <dd>{{ $service->location }}</dd>
+	                        <dt>Set-aside</dt>
+	                        <dd>{{ $service->setaside }}</dd>
                         </dl>
-                    	<button type="submit" className="full-primary-btn fare-btn">CONTINUE TO PAY</button>   
+                    	<button type="submit" className="full-primary-btn fare-btn">Pay Now</button>   
                     </form>
+					<form action="{{url('cancel/ride')}}" method="POST">
+						{{ csrf_field() }}</input>
+					<input type="hidden" name="request_id" value={this.props.checkState.id} />
+		            	<button type="submit" className="full-primary-btn fare-btn">@lang('user.ride.cancel_request')</button> 
+		            	<br/>
+		            </form>
 		        </div>
 				);
 			}

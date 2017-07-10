@@ -22,7 +22,15 @@ class ServiceType extends Model
         'minute',
         'distance',
         'calculator',
-        'capacity'
+        'capacity',
+        'solnbr',
+        'subject',
+        'agency',
+        'office',
+        'location',
+        'type',
+        'setaside',
+        'date'
     ];
 
     /**

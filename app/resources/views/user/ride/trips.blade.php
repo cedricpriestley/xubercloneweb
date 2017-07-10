@@ -1,6 +1,6 @@
 @extends('user.layout.base')
 
-@section('title', 'My Trips ')
+@section('title', 'My Order ')
 
 @section('content')
 
@@ -106,7 +106,7 @@
                 </table>
                 @else
                     <hr>
-                    <p style="text-align: center;">No trips Available</p>
+                    <p style="text-align: center;">No orders</p>
                 @endif
             </div>
         </div>

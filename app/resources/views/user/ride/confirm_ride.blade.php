@@ -1,29 +1,39 @@
 @extends('user.layout.base')
 
-@section('title', 'Ride Confirmation ')
+@section('title', 'Order Confirmation ')
 
 @section('content')
 <div class="col-md-9">
     <div class="dash-content">
         <div class="row no-margin">
             <div class="col-md-12">
-                <h4 class="page-title">@lang('user.ride.ride_now')</h4>
+                <h4 class="page-title">FBO Contract</h4>
             </div>
         </div>
         @include('common.notify')
         <div class="row no-margin">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <form action="{{url('create/ride')}}" method="POST" id="create_ride">
                 {{ csrf_field() }}
                     <dl class="dl-horizontal left-right">
-                        <dt>@lang('user.type')</dt>
-                        <dd>{{$service->name}}</dd>
-                        <dt>@lang('user.total_distance')</dt>
-                        <dd>{{$fare->distance}} Kms</dd>
-                        <dt>@lang('user.eta')</dt>
-                        <dd>{{$fare->time}}</dd>
-                        <dt>@lang('user.estimated_fare')</dt>
-                        <dd>{{currency($fare->estimated_fare)}}</dd>
+                        <dt>Price</dt>
+                        <dd>{{currency($service->fixed)}}</dd>
+                        <dt>Solicitation #</dt>
+                        <dd>{{ $service->solnbr }}</dd>
+                        <dt>Posted Date</dt>
+                        <dd>{{ $service->date }}</dd>
+                        <dt>Type</dt>
+                        <dd>{{ $service->type }}</dd>
+                        <dt>Subject</dt>
+                        <dd>{{ $service->subject }}</dd>
+                        <dt>Agency</dt>
+                        <dd>{{ $service->agency }}</dd>
+                        <dt>Office</dt>
+                        <dd>{{ $service->office }}</dd>
+                        <dt>Location</dt>
+                        <dd>{{ $service->location }}</dd>
+                        <dt>Set-aside</dt>
+                        <dd>{{ $service->setaside }}</dd>
                         <hr>
                         @if(Auth::user()->wallet_balance > 0)
 
@@ -44,9 +54,9 @@
                     <input type="hidden" name="service_type" value="{{Request::get('service_type')}}">
                     <input type="hidden" name="distance" value="{{$fare->distance}}">
 
-                    <p>@lang('user.payment_method')</p>
-                    <select class="form-control" name="payment_mode" id="payment_mode" onchange="card(this.value);">
-                      <option value="CASH">CASH</option>
+                    <!--<p>@lang('user.payment_method')</p>-->
+                    <select class="form-control" name="payment_mode" id="payment_mode" onchange="card(this.value);" style="display:none;">
+                      <!--<option value="CASH">CASH</option>-->
                       @if(Setting::get('CARD') == 1)
                       @if($cards->count() > 0)
                         <option value="CARD">CARD</option>
@@ -55,24 +65,24 @@
                     </select>
                     <br>
 
-                    @if(Setting::get('CARD') == 1)
+                    <!--@if(Setting::get('CARD') == 1)-->
                         @if($cards->count() > 0)
-                        <select class="form-control" name="card_id" style="display: none;" id="card_id">
+                        <select class="form-control" name="card_id" <!--style="display: none;"--> id="card_id">
                           <option value="">Select Card</option>
                           @foreach($cards as $card)
                             <option value="{{$card->card_id}}">{{$card->brand}} **** **** **** {{$card->last_four}}</option>
                           @endforeach
                         </select>
                         @endif
-                    @endif
+                    <!--@endif-->
 
-                    <button type="submit" class="half-primary-btn fare-btn">@lang('user.ride.ride_now')</button>
-                    <button type="button" class="half-secondary-btn fare-btn" data-toggle="modal" data-target="#schedule_modal">Schedule Later</button>
+                    <button type="submit" class="half-primary-btn fare-btn"><!--@lang('user.ride.ride_now')-->Purchase</button>
+                    <!--<button type="button" class="half-secondary-btn fare-btn" data-toggle="modal" data-target="#schedule_modal">Schedule Later</button>-->
 
                 </form>
             </div>
 
-            <div class="col-md-6">
+            <!--<div class="col-md-6">
                 <div class="user-request-map">
                     <?php 
                     $map_icon = asset('asset/img/marker-start.png');
@@ -90,7 +100,7 @@
                         </div>
                     </div>
                 </div> 
-            </div>
+            </div>-->
         </div>
 
     </div>

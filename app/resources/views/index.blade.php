@@ -5,7 +5,7 @@
     <div class="banner-overlay"></div>
     <div class="container">
         <div class="col-md-8">
-            <h2 class="banner-head"><span class="strong">Get there</span><br>Your day belongs to you</h2>
+            <h2 class="banner-head"><span class="strong">Welcome to  IceCap USA</span><br>FBO Contract fulfillment made easy</h2>
         </div>
         <div class="col-md-4">
             <div class="banner-form">
@@ -15,11 +15,12 @@
                     </div>
                     <div class="right">
                         <a href="{{url('login')}}">
-                            <h3>Sign up to Ride</h3>
+                            <h3>Sign up to Buy</h3>
                             <h5>SIGN UP <i class="fa fa-chevron-right"></i></h5>
                         </a>
                     </div>
                 </div>
+                <!--
                 <div class="row no-margin fields">
                     <div class="left">
                         <img src="{{ asset('asset/img/ride-form-icon.png') }}">
@@ -31,12 +32,13 @@
                         </a>
                     </div>
                 </div>
-                <p class="note-or">Or <a href="{{ url('/provider/login') }}">sign in</a> with your rider account.</p>
+                -->
+                <p class="note-or">Or <a href="{{ url('/provider/login') }}">sign in</a> with your account.</p>
             </div>
         </div>
     </div>
 </div>
-
+<!--
 <div class="row white-section no-margin">
     <div class="container">
         <div class="col-md-6 img-block text-center"> 
@@ -88,8 +90,7 @@
             <p>What makes the {{ Setting::get('site_title', 'Tranxit') }} experience truly great are the people behind the wheel. They are mothers and fathers. Students and teachers. Veterans. Neighbors. Friends. Our partners drive their own cars—on their own schedule—in cities big and small. Which is why more than one million people worldwide have signed up to drive.</p>
             <a class="content-more-btn" href="#">WHY DRIVE WITH {{ Setting::get('site_title', 'Tranxit')  }} <i class="fa fa-chevron-right"></i></a>
         </div>
-        <div class="col-md-6 full-img text-center" style="background-image: url({{ asset('asset/img/behind-the-wheel.jpg') }});"> 
-            <!-- <img src="img/anywhere.png"> -->
+        <div class="col-md-6 full-img text-center" style="background-image: url({{ asset('asset/img/behind-the-wheel.jpg') }});">
         </div>
     </div>
 </div>
@@ -137,6 +138,6 @@
         </form>
     </div>
 </div>
-
+-->
 <div class="footer-city row no-margin" style="background-image: url({{ asset('asset/img/footer-city.png') }});"></div>
 @endsection

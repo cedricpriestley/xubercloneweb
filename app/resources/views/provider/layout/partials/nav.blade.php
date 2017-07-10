@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
     <ul class="nav sidebar-nav">
         <li>
-            <a href="{{ route('provider.earnings') }}">Patner Earnings</a>
+            <a href="{{ route('provider.earnings') }}">Partner Earnings</a>
         </li>
         <li>
             <a href="#">Invite</a>

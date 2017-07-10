@@ -11,7 +11,7 @@
             </div>
             <div class="col-md-3 col-sm-3 col-xs-12">
                 <ul>
-                    <li><a href="#">Signup to Ride</a></li>
+                    <li><a href="#">Signup Now</a></li>
                     <li><a href="#">Become a Driver</a></li>
                     <li><a href="#">Ride Now</a></li>
                 </ul>
