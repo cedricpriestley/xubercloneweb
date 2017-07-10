@@ -8,14 +8,14 @@
 					<span class="s-text">Dashboard</span>
 				</a>
 			</li>
-			
+			<!--
 			<li>
 				<a href="{{ route('admin.dispatcher.index') }}" class="waves-effect waves-light">
 					<span class="s-icon"><i class="ti-target"></i></span>
 					<span class="s-text">Dispatcher</span>
 				</a>
 			</li>
-			
+			-->
 			<li class="menu-title">Members</li>
 			<li class="with-sub">
 				<a href="#" class="waves-effect  waves-light">

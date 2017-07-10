@@ -13,7 +13,7 @@
                     <span class="hamb-middle"></span>
                     <span class="hamb-bottom"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url('/provider') }}"><img src="{{ Setting::get('site_logo', asset('logo-black.png')) }}"></a>
+                <a class="navbar-brand" href="{{ url('/provider') }}">ICECAP USA</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

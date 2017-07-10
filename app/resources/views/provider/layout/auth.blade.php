@@ -31,9 +31,9 @@
             <div class="full-page-bg-inner">
                 <div class="row no-margin">
                     <div class="col-md-6 log-left">
-                        <span class="login-logo"><img src="{{ Setting::get('site_logo', asset('logo-black.png')) }}"></span>
+                        <span class="login-logo">ICECAP USA</span>
                         <h2>{{Setting::get('site_title','Tranxit')}} needs partners like you.</h2>
-                        <p>Drive with {{Setting::get('site_title','Tranxit')}} and earn great money as an independent contractor. Get paid weekly just for helping our community of riders get rides around town. Be your own boss and get paid in fares for driving on your own schedule.</p>
+                        <p>Partner with {{Setting::get('site_title','Tranxit')}} and earn great money as an independent contractor.</p>
                     </div>
                     <div class="col-md-6 log-right">
                         <div class="login-box-outer">

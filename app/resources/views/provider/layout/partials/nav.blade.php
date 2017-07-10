@@ -1,11 +1,16 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
     <ul class="nav sidebar-nav">
         <li>
+            <a href="/provider">Home</a>
+        </li>
+        <li>
             <a href="{{ route('provider.earnings') }}">Partner Earnings</a>
         </li>
+        <!--
         <li>
             <a href="#">Invite</a>
         </li>
+        -->
         <li>
             <a href="{{ route('provider.profile.index') }}">Profile</a>
         </li>

@@ -22,7 +22,7 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
             <ul class="nav sidebar-nav">
                 <li>
-                </li>p) }}">BECOME A DRIVER</a>
+                </li>p) }}">BECOME A CONTRACTOR</a>
                 </li>
                 <li>
                     <a href="{{ url('/ride') }}">Buy</a>
@@ -80,9 +80,9 @@
                                 </li>-->
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <!--<li><a href="#">Help</a></li>-->
+                                <li><a href="#">Help</a></li>-->
                                 <li><a href="{{url('/login')}}">Signin</a></li>
-                                <!--<li><a class="menu-btn" href="{{url('/drive')}}">Become a Driver</a></li>-->
+                                <li><a class="menu-btn" href="{{url('/drive')}}">Become a Contractor</a></li>
                             </ul>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                             <div class="col-md-3 col-sm-3 col-xs-12">
                                 <ul>
                                     <li><a href="{{url('ride')}}">Signup</a></li>
-                                    <!--<li><a href="{{url('drive')}}">Become a Driver</a></li>-->
+                                    <li><a href="{{url('drive')}}">Become a Contractor</a></li>
                                     <li><a href="{{url('ride')}}">Buy</a></li>                            
                                 </ul>
                             </div>

@@ -33,9 +33,9 @@
                             </a>
                         </div>
                     </div>
-<!--
+
                     <p class="note-or">Or <a href="{{url('provider/login')}}">sign in</a> with your driver account.</p>
-    -->                
+                    
                 </div>
             </div>
         </div>

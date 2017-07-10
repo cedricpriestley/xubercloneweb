@@ -11,7 +11,7 @@ use App\Http\Controllers\ProviderResources\TripController;
 
 class ProviderController extends Controller
 {
-    /**
+    /**              $UserAPI = new UserApiController();
      * Create a new controller instance.
      *
      * @return void
@@ -28,7 +28,9 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        return view('provider.index');
+        $UserAPI = new UserApiController();
+        $services = $UserAPI->services();
+        return view('provider.index',compact('services'));
     }
 
     /**

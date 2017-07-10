@@ -21,7 +21,7 @@ function fbo_parse() {
   $name_array = array();
 
 	// instantiate node
-	while(/*	$node_count <= 192 &&*/ $reader->read()) {
+	while($node_count <= 192 && $reader->read()) {
 
 	  $name = strtolower($reader->name);
 
@@ -49,20 +49,22 @@ function fbo_parse() {
 						$updated = $created;
 
     				if (!empty($id)) {
-    					$sql = "UPDATE `service_types`\nSET `name` = '$solnbr',\n`updated_at` = '$updated',\n`subject` = '$subject',\n`agency` = '$agency',\n`office` = '$office',\n`location` = '$location',\n`type` = '$notice_type',\n`setaside` = '$setaside',\n`date` = '$date'\nWHERE `id` = $id;";
+    					$sql = "UPDATE `service_types`\nSET `name` = '$solnbr',\n`updated_at` = '$updated',\n`subject` = '$subject',\n`agency` = '$agency',\n`office` = '$office',\n`location` = '$location',\n`type` = '$notice_type',\n`setaside` = '$setaside',\n`date` = '$date',\n`desc` = '$desc'\nWHERE `id` = $id;";
     				} else {
 
-    					$sql = "INSERT INTO `service_types`(`name`, `created_at`, `updated_at`, `solnbr`, `subject`, `agency`, `office`, `location`, `type`, `setaside`, `date`)\nVALUES('$solnbr', '$created', '$updated', '$solnbr', '$subject', '$agency', '$office', '$location', '$notice_type', '$setaside', '$date' );";
-    				}
-
-    				//print $sql . "\n"; 
+    					$sql = "INSERT INTO `service_types`(`name`, `created_at`, `updated_at`, `solnbr`, `subject`, `agency`, `office`, `location`, `type`, `setaside`, `date`, `desc`)\nVALUES('$solnbr', '$created', '$updated', '$solnbr', '$subject', '$agency', '$office', '$location', '$notice_type', '$setaside', '$date', '$desc');";
+    				} 
 						if (empty($id)) {
 						$pdo = new PDO('mysql:host=127.0.0.1;dbname=xubercloneweb', 'root', 'Secret!23');
-
+						//$sql = $pdo->quote($sql);
+						if ($solnbr == "SPE7L217T4001") {
+print $sql . "\n";
+//exit;
+						}
 						if($pdo->exec($sql) === false){
 							print "Error saving contract: $solnbr.\n";
 						} else {
-							//print "Successfully saved contract: $solnbr\n";
+							print "Successfully saved contract: $solnbr\n";
 						}
 						}
 
@@ -127,7 +129,7 @@ function fbo_parse() {
 	      $reader->read();
 	      if ($reader->depth == 3) {
 	        //print "type: " . $notice_type . ", name: " . $name . ", value: " . $reader->value . ", type: " . $reader->nodeType . ", depth " . $reader->depth . "\n";
-	      	$agency = $reader->value;
+	      	$agency = str_replace("'", "''", $reader->value);
 	      }
 
 	      break;  
@@ -135,7 +137,7 @@ function fbo_parse() {
 	      $reader->read();
 	      if ($reader->depth == 3) {
 	        //print "type: " . $notice_type . ", name: " . $name . ", value: " . $reader->value . ", type: " . $reader->nodeType . ", depth " . $reader->depth . "\n";
-	      	$office = $reader->value;
+	      	$office = str_replace("'", "''", $reader->value);
 	      }
 	           
 	      break;
@@ -143,7 +145,7 @@ function fbo_parse() {
 	      $reader->read();
 	      if ($reader->depth == 3) {
 	        //print "type: " . $notice_type . ", name: " . $name . ", value: " . $reader->value . ", type: " . $reader->nodeType . ", depth " . $reader->depth . "\n";
-	      	$location = $reader->value;
+	      	$location = str_replace("'", "''", $reader->value);
 	      }
 	           
 	      break;
@@ -176,7 +178,7 @@ function fbo_parse() {
 	      $reader->read();
 	      if ($reader->depth == 3) {
 	        //print "type: " . $notice_type . ", name: " . $name . ", value: " . $reader->value . ", type: " . $reader->nodeType . ", depth " . $reader->depth . "\n";
-	      	$offadd = $reader->value;
+	      	$offadd = str_replace("'", "''", $reader->value);
 	      }
 	      
 	      break;
@@ -185,7 +187,7 @@ function fbo_parse() {
 	      $reader->read();
 	      if ($reader->depth == 3) {
 	        //print "type: " . $notice_type . ", name: " . $name . ", value: " . $reader->value . ", type: " . $reader->nodeType . ", depth " . $reader->depth . "\n";
-	      	$subject = $reader->value;
+	      	$subject = str_replace("'", "''", $reader->value);
 	      }
 	      
 	      break;
@@ -220,7 +222,7 @@ function fbo_parse() {
 	      $reader->read();
 	      if ($reader->depth == 3) {
 	        //print "type: " . $notice_type . ", name: " . $name . ", value: " . $reader->value . ", type: " . $reader->nodeType . ", depth " . $reader->depth . "\n\n";
-	      	$desc = $reader->value;
+	      	$desc = str_replace("'", "''", $reader->value);
 	      }
 	      
 	      break;  

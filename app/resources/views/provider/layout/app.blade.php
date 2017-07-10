@@ -62,7 +62,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 
-    <script type="text/babel" src="{{ asset('asset/js/incoming.js') }}"></script>
+    <!--<script type="text/babel" src="{{ asset('asset/js/incoming.js') }}"></script>-->
     <script type="text/javascript">
         // $.incoming({
         //     'url': '{{ route('provider.incoming') }}',

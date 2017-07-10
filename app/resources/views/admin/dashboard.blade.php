@@ -57,7 +57,7 @@
 		<div class="col-md-12">
 				<div class="box bg-white">
 					<div class="box-block clearfix">
-						<h5 class="float-xs-left">Recent Rides</h5>
+						<h5 class="float-xs-left">Recent Purchases</h5>
 						<div class="float-xs-right">
 							<button class="btn btn-link btn-sm text-muted" type="button"><i class="ti-close"></i></button>
 						</div>

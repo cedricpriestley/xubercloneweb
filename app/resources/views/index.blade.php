@@ -20,7 +20,6 @@
                         </a>
                     </div>
                 </div>
-                <!--
                 <div class="row no-margin fields">
                     <div class="left">
                         <img src="{{ asset('asset/img/ride-form-icon.png') }}">
@@ -32,7 +31,6 @@
                         </a>
                     </div>
                 </div>
-                -->
                 <p class="note-or">Or <a href="{{ url('/login') }}">sign in</a> with your account.</p>
             </div>
         </div>
