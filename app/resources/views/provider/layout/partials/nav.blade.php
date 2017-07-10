@@ -3,10 +3,10 @@
         <li>
             <a href="/provider">Home</a>
         </li>
+        <!--
         <li>
             <a href="{{ route('provider.earnings') }}">Partner Earnings</a>
         </li>
-        <!--
         <li>
             <a href="#">Invite</a>
         </li>
