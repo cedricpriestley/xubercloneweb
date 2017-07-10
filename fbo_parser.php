@@ -6,7 +6,7 @@ function fbo_parse() {
 	ini_set('memory_limit','1536M'); // 1.5 GB
 	ini_set('max_execution_time', 18000); // 5 hours
 
-	$file = "/home/cedric/Downloads/FBOFullXML.xml";
+	$file = "./FBOFullXML.xml"; 
 	$reader = new XMLReader();
 	$reader->open($file);
 	$fields = array("date", "zip", "classcod", "naics", "offadd", "subject", "solnbr", "respdate", "archdate", "contact", "desc", "link", "email", "links", "files", "setaside", "popaddress", "popzip", "popcountry", "recovery_act");
@@ -21,7 +21,7 @@ function fbo_parse() {
   $name_array = array();
 
 	// instantiate node
-	while(/*$node_count <= 192 &&*/ $reader->read()) {
+	while(/*	$node_count <= 192 &&*/ $reader->read()) {
 
 	  $name = strtolower($reader->name);
 
@@ -56,21 +56,20 @@ function fbo_parse() {
     				}
 
     				//print $sql . "\n"; 
-
+						if (empty($id)) {
 						$pdo = new PDO('mysql:host=127.0.0.1;dbname=xubercloneweb', 'root', 'Secret!23');
 
 						if($pdo->exec($sql) === false){
 							print "Error saving contract: $solnbr.\n";
 						} else {
-							print "Successfully saved contract: $solnbr\n";
+							//print "Successfully saved contract: $solnbr\n";
 						}
-						
+						}
 
 						$solnbr = "";
 						$date = "";
 						$agency = "";
 						$office = "";
-						$location = "";
 						$zip = "";
 						$classcod = "";
 						$naics = "";

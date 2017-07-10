@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 -->
-                <p class="note-or">Or <a href="{{ url('/provider/login') }}">sign in</a> with your account.</p>
+                <p class="note-or">Or <a href="{{ url('/login') }}">sign in</a> with your account.</p>
             </div>
         </div>
     </div>
