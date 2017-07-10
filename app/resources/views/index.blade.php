@@ -26,7 +26,7 @@
                     </div>
                     <div class="right">
                         <a href="{{ url('/provider/register') }}">
-                            <h3>Sign up to Drive</h3>
+                            <h3>Sign up to Contract</h3>
                             <h5>SIGN UP <i class="fa fa-chevron-right"></i></h5>
                         </a>
                     </div>
