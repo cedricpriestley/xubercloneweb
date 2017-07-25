@@ -39,7 +39,7 @@
                         </div>
                     </blockquote>
                 </div>
-
+<!--
                 <div class="card card-block card-inverse card-primary">
                     <blockquote class="card-blockquote">
                         <i class="fa fa-3x fa-money pull-right"></i>
@@ -55,11 +55,13 @@
                         </div>
                     </blockquote>
                 </div>
-                <h5>Payment Settings</h5>
+-->    
+    <h5>Payment Settings</h5>
 
                 <div class="card card-block card-inverse card-info">
                     <blockquote class="card-blockquote">
-                        <div class="form-group row">
+                    
+                        <div style="display:none;" class="form-group row">
                             <label for="daily_target" class="col-xs-4 col-form-label">Daily Target</label>
                             <div class="col-xs-8">
                                 <input class="form-control" 
@@ -73,7 +75,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div style="display:none;" class="form-group row">
                             <label for="tax_percentage" class="col-xs-4 col-form-label">Tax percentage(%)</label>
                             <div class="col-xs-8">
                                 <input class="form-control"
@@ -87,7 +89,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div style="display:none;" class="form-group row">
                             <label for="surge_trigger" class="col-xs-4 col-form-label">Surge Trigger Point</label>
                             <div class="col-xs-8">
                                 <input class="form-control"
@@ -100,8 +102,7 @@
                                     placeholder="Surge Trigger Point">
                             </div>
                         </div>
-
-                        <div class="form-group row">
+                        <div style="display:none;" class="form-group row">
                             <label for="surge_percentage" class="col-xs-4 col-form-label">Surge percentage(%)</label>
                             <div class="col-xs-8">
                                 <input class="form-control"
@@ -114,7 +115,6 @@
                                     placeholder="Surge percentage">
                             </div>
                         </div>
-
                         <div class="form-group row">
                             <label for="commission_percentage" class="col-xs-4 col-form-label">Commission percentage(%)</label>
                             <div class="col-xs-8">
@@ -128,8 +128,20 @@
                                     placeholder="Commission percentage">
                             </div>
                         </div>
-
                         <div class="form-group row">
+                            <label for="minimum_price" class="col-xs-4 col-form-label">Minimum Price</label>
+                            <div class="col-xs-8">
+                                <input class="form-control"
+                                    type="number"
+                                    value="{{ Setting::get('minimum_price', '0') }}"
+                                    id="minimum_price"
+                                    name="minimum_price"
+                                    min="0"
+                                    max=""
+                                    placeholder="Minimum Price">
+                            </div>
+                        </div>
+                        <div style="display:none;" class="form-group row">
                             <label for="base_price" class="col-xs-4 col-form-label">
                                 Currency ( <strong>{{ Setting::get('currency', '$')  }} </strong>)
                             </label>

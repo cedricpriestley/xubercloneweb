@@ -57,7 +57,7 @@
                     <input type="hidden" name="d_longitude" id="destination_longitude" value="-74.00113820">
                     <input type="hidden" name="current_longitude" id="long">
                     <input type="hidden" name="current_latitude" id="lat">
-                    <button type="submit"  class="full-primary-btn fare-btn">View</button>
+                    <button type="submit"  class="full-primary-btn fare-btn">Buy</button>
                 </form></td>
                     </tr>
                 @endforeach

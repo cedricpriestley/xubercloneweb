@@ -34,3 +34,5 @@ Route::post('/location', 'ProviderController@location_update')->name('location.u
 
 Route::get('/profile/password', 'ProviderController@index')->name('password');
 Route::post('/profile/available', 'ProviderController@available')->name('available');
+
+Route::get('/provider/view/contract', 'ProviderController@view_contract');

@@ -45,28 +45,6 @@ class RideController extends Controller
     }
 
     /**
-     * Ride Confirmation.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function view_contract(Request $request)
-    {
-        $fare = $this->UserAPI->estimated_fare($request)->getData();
-        $service = (new Resource\ServiceResource)->show($request->service_type);
-        $cards = (new Resource\CardResource)->index();
-
-        if($request->has('current_longitude') && $request->has('current_latitude'))
-        {
-            User::where('id',Auth::user()->id)->update([
-                'latitude' => $request->current_latitude,
-                'longitude' => $request->current_longitude
-            ]);
-        }
-        
-        return view('provider.ride.confirm_ride',compact('request','fare','service','cards'));
-    }
-
-    /**
      * Create Ride.
      *
      * @return \Illuminate\Http\Response

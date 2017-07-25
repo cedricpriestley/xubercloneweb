@@ -29,15 +29,6 @@
                 <dd>{{ $service->setaside }}</dd>
                 <dt>Description</dt>
                 <dd>{{ $service->desc }}</dd>
-                <hr>
-                @if(Auth::user()->wallet_balance > 0)
-
-                <input type="checkbox" name="use_wallet" value="1"><span style="padding-left: 15px;">@lang('user.use_wallet_balance')</span>
-                <br>
-                <br>
-                    <dt>@lang('user.available_wallet_balance')</dt>
-                    <dd>{{currency(Auth::user()->wallet_balance)}}</dd>
-                @endif
             </dl>
 
             <input type="hidden" name="s_address" value="{{Request::get('s_address')}}">
@@ -47,7 +38,6 @@
             <input type="hidden" name="d_latitude" value="{{Request::get('d_latitude')}}">
             <input type="hidden" name="d_longitude" value="{{Request::get('d_longitude')}}">
             <input type="hidden" name="service_type" value="{{Request::get('service_type')}}">
-            <input type="hidden" name="distance" value="{{$fare->distance}}">
 
     </div>
     <div class="col-md-3"></div>

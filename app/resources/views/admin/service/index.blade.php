@@ -18,7 +18,7 @@
                         <th>Type/Set-aside</th>
                         <th>Price</th>
                         <th>Posted On</th>
-                        <!--<th>Action</th>-->
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,19 +31,20 @@
                         <td>{{ $service->type }} / {{ $service->setaside }}</td>
                         <td>{{ currency($service->fixed) }}</td>
                         <td>{{ $service->date }}</td>
-                        <!--<td>
+                        <td>
                             <form action="{{ route('admin.service.destroy', $service->id) }}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                                 <a href="{{ route('admin.service.edit', $service->id) }}" class="btn btn-info btn-block">
                                     <i class="fa fa-pencil"></i> Edit
                                 </a>
+                                <!--
                                 <button class="btn btn-danger btn-block" onclick="return confirm('Are you sure?')">
                                     <i class="fa fa-trash"></i> Delete
                                 </button>
+                                -->
                             </form>
                         </td>
-                        -->
                     </tr>
                 @endforeach
                 </tbody>
@@ -56,7 +57,7 @@
                         <th>Type/Set-aside</th>
                         <th>Price</th>
                         <th>Posted On</th>
-                        <!--<th>Action</th>-->
+                        <th>Action</th>
                     </tr>
                 </tfoot>
             </table>

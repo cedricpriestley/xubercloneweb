@@ -81,7 +81,7 @@ Route::post('/profile', 'HomeController@update_profile');
 Route::get('/change/password', 'HomeController@change_password');
 Route::post('/change/password', 'HomeController@update_password');
 
-Route::get('/provider/view/contract', 'RideController@view_contract');
+Route::get('/provider/view/contract', 'ProviderController@view_contract');
 // ride
 Route::get('/confirm/ride', 'RideController@confirm_ride');
 Route::post('/create/ride', 'RideController@create_ride');
