@@ -8,9 +8,9 @@
     <div class="full-page-bg-inner">
         <div class="row no-margin">
             <div class="col-md-6 log-left">
-                <span class="login-logo">ICECAP USA</span>
-                <h2>Create your account and start browsing FBO Contacts in minutes</h2>
-                <p>Welcome to {{Setting::get('site_title', 'Tranxit')}}, the easiest way to federal government contracts.</p>
+                <span class="login-logo"><img src="{{asset('asset/img/logo.png')}}"></span>
+                <h2>Create your account and get moving in minutes</h2>
+                <p>Welcome to {{ Setting::get('site_title', 'Tranxit')  }}, the easiest way to get around at the tap of a button.</p>
             </div>
             <div class="col-md-6 log-right">
                 <div class="login-box-outer">

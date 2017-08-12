@@ -17,7 +17,7 @@
                         </div>
                         <div class="right">
                             <a href="{{url('login')}}">
-                                <h3>Buy with {{Setting::get('site_title','Tranxit')}}</h3>
+                                <h3>Ride with {{Setting::get('site_title','Tranxit')}}</h3>
                                 <h5>SIGN IN <i class="fa fa-chevron-right"></i></h5>
                             </a>
                         </div>
@@ -28,7 +28,7 @@
                         </div>
                         <div class="right">
                             <a href="{{url('register')}}">
-                                <h3>Sign up to Buy</h3>
+                                <h3>Sign up to Ride</h3>
                                 <h5>SIGN UP <i class="fa fa-chevron-right"></i></h5>
                             </a>
                         </div>
@@ -41,9 +41,7 @@
         </div>
     </div>
 
-<!--
     <div class="row white-section no-margin">
-   
         <div class="container">
             
             <div class="col-md-4 content-block small">
@@ -199,7 +197,6 @@
             </form>
         </div>
     </div>
-    -->
     <?php $footer = asset('asset/img/footer-city.png'); ?>
     <div class="footer-city row no-margin" style="background-image: url({{$footer}});"></div>
 @endsection

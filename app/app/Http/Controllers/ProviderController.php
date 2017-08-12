@@ -11,7 +11,7 @@ use App\Http\Controllers\ProviderResources\TripController;
 
 class ProviderController extends Controller
 {
-    /**              $UserAPI = new UserApiController();
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -28,9 +28,7 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        $UserAPI = new UserApiController();
-        $services = $UserAPI->services();
-        return view('provider.index',compact('services'));
+        return view('provider.index');
     }
 
     /**
@@ -188,24 +186,4 @@ class ProviderController extends Controller
 
     }
 
-    /**
-     * Provider Confirmation.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function view_contract(Request $request)
-    {
-        $service = (new Resource\ServiceResource)->show($request->service_type);
-        $cards = (new Resource\CardResource)->index();
-
-        if($request->has('current_longitude') && $request->has('current_latitude'))
-        {
-            User::where('id',Auth::user()->id)->update([
-                'latitude' => $request->current_latitude,
-                'longitude' => $request->current_longitude
-            ]);
-        }
-        
-        return view('provider.ride.confirm_ride',compact('request','service','cards'));
-    }
 }

@@ -29,11 +29,11 @@
                                 <input tabindex="2" id="pac-input" class="form-control" type="text" placeholder="Enter a location" name="s_address">
                             </div>
                         </div>
-<!--
+
                         <div class="col-xs-12">
                             <div id="map"></div>
                         </div>
--->
+
                         <form action="{{ route('provider.location.update') }}" id="location_update_form" method="POST" class="form-horizontal row-border">
                             {{ csrf_field() }}
                             <input type="hidden" name="latitude" id="latitude">
@@ -56,7 +56,6 @@
 @endsection
 
 @section('scripts')
-<!--
 <script>
     var map;
     var input = document.getElementById('pac-input');
@@ -155,7 +154,6 @@
     }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALHyNTDk1K_lmcFoeDRsrCgeMGJW6mGsY&libraries=places&callback=initMap" async defer></script>
--->
 @endsection
 
 @section('styles')

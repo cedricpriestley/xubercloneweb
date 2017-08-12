@@ -60,22 +60,21 @@
 						<input class="form-control" type="text" value="{{ Setting::get('store_link_ios', '')  }}" name="store_link_ios"  id="store_link_ios" placeholder="Appstore link">
 					</div>
 				</div>
-<!--
+
 				<div class="form-group row">
 					<label for="provider_select_timeout" class="col-xs-2 col-form-label">Provider Accept Timeout</label>
 					<div class="col-xs-10">
 						<input class="form-control" type="number" value="{{ Setting::get('provider_select_timeout', '60')  }}" name="provider_select_timeout" required id="provider_select_timeout" placeholder="Provider Timout">
 					</div>
 				</div>
-        
+
 				<div class="form-group row">
 					<label for="provider_search_radius" class="col-xs-2 col-form-label">Provider Search Radius</label>
 					<div class="col-xs-10">
 						<input class="form-control" type="number" value="{{ Setting::get('provider_search_radius', '100')  }}" name="provider_search_radius" required id="provider_search_radius" placeholder="Provider Search Radius">
 					</div>
 				</div>
-        -->
-        
+
 				<div class="form-group row">
 					<label for="zipcode" class="col-xs-2 col-form-label"></label>
 					<div class="col-xs-10">

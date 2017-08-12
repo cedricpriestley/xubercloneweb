@@ -33,10 +33,7 @@ class HomeController extends Controller
             $services = $this->UserAPI->services();
             return view('user.dashboard',compact('services'));
         }else{
-        
-        $service = (new Resource\ServiceResource)->show($Response->data[0]->service_type_id);
-
-        return view('user.ride.waiting')->with('request',$Response->data[0])->with('service',$service);
+            return view('user.ride.waiting')->with('request',$Response->data[0]);
         }
     }
 

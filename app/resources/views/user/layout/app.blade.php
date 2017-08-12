@@ -22,19 +22,22 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
             <ul class="nav sidebar-nav">
                 <li>
-                </li>p) }}">BECOME A CONTRACTOR</a>
+                </li>
+                <li class="full-white">
+                    <a href="{{ url('/register') }}">SIGN UP To RIDE</a>
+                </li>
+                <li class="white-border">
+                    <a href="{{ url('/provider/login') }}">BECOME A DRIVER</a>
                 </li>
                 <li>
-                    <a href="{{ url('/ride') }}">Buy</a>
+                    <a href="{{ url('/ride') }}">Ride</a>
                 </li>
-                <!--
                 <li>
                     <a href="{{ url('/drive') }}">Drive</a>
                 </li>
                 <li>
                     <a href="#">Help</a>
                 </li>
-                -->
                 <li>
                     <a href="#">Privacy Policy</a>
                 </li>
@@ -68,21 +71,21 @@
                                 <span class="hamb-bottom"></span>
                             </button>
 
-                            <a class="navbar-brand" href="{{url('/')}}"><!--<img src="{{ Setting::get('site_logo', asset('logo-black.png')) }}">-->ICECAP USA</a>
+                            <a class="navbar-brand" href="{{url('/')}}"><img src="{{ Setting::get('site_logo', asset('logo-black.png')) }}"></a>
                         </div>
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
                                 <li @if(Request::url() == url('/ride')) class="active" @endif>
-                                    <a href="{{url('/ride')}}">Buy</a>
+                                    <a href="{{url('/ride')}}">Ride</a>
                                 </li>
-                                <!--<li @if(Request::url() == url('/drive')) class="active" @endif>
+                                <li @if(Request::url() == url('/drive')) class="active" @endif>
                                     <a href="{{url('/drive')}}">Drive</a>
-                                </li>-->
+                                </li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#">Help</a></li>-->
+                                <li><a href="#">Help</a></li>
                                 <li><a href="{{url('/login')}}">Signin</a></li>
-                                <li><a class="menu-btn" href="{{url('/drive')}}">Become a Contractor</a></li>
+                                <li><a class="menu-btn" href="{{url('/drive')}}">Become a Driver</a></li>
                             </ul>
                         </div>
                     </div>
@@ -94,17 +97,24 @@
                 <div class="footer row no-margin">
                     <div class="container">
                         <div class="footer-logo row no-margin">
-                            <!--iv class="logo-img">
-                                !-<img src="{{Setting::get('site_logo',asset('asset/img/logo-white.png'))}}">
-                            </div>-->
-
+                            <div class="logo-img">
+                                <img src="{{Setting::get('site_logo',asset('asset/img/logo-white.png'))}}">
+                            </div>
                         </div>
                         <div class="row no-margin">
                             <div class="col-md-3 col-sm-3 col-xs-12">
                                 <ul>
-                                    <li><a href="{{url('ride')}}">Signup</a></li>
-                                    <li><a href="{{url('drive')}}">Become a Contractor</a></li>
-                                    <li><a href="{{url('ride')}}">Buy</a></li>                            
+                                    <li><a href="#">Ride</a></li>
+                                    <li><a href="#">Drive</a></li>
+                                    <li><a href="#">Cities</a></li>
+                                    <li><a href="#">Fare Estimate</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <ul>
+                                    <li><a href="{{url('ride')}}">Signup to Ride</a></li>
+                                    <li><a href="{{url('drive')}}">Become a Driver</a></li>
+                                    <li><a href="{{url('ride')}}">Ride Now</a></li>                            
                                 </ul>
                             </div>
 

@@ -4,7 +4,7 @@
 	<nav class="navbar navbar-light">
 		<div class="navbar-left">
 			<a class="navbar-brand" href="{{url('admin/dashboard')}}">
-				<div class="logo">ICECAP USA</div>
+				<div class="logo" style="background: url({{ Setting::get('site_logo', asset('logo-black.png')) }}) no-repeat;"></div>
 			</a>
 			<div class="toggle-button dark sidebar-toggle-first float-xs-left hidden-md-up">
 				<span class="hamburger"></span>

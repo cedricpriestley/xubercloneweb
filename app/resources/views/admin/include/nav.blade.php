@@ -8,14 +8,13 @@
 					<span class="s-text">Dashboard</span>
 				</a>
 			</li>
-			<!--
 			<li>
 				<a href="{{ route('admin.dispatcher.index') }}" class="waves-effect waves-light">
 					<span class="s-icon"><i class="ti-target"></i></span>
 					<span class="s-text">Dispatcher</span>
 				</a>
 			</li>
-			-->
+			
 			<li class="menu-title">Members</li>
 			<li class="with-sub">
 				<a href="#" class="waves-effect  waves-light">
@@ -32,14 +31,13 @@
 				<a href="#" class="waves-effect  waves-light">
 					<span class="s-caret"><i class="fa fa-angle-down"></i></span>
 					<span class="s-icon"><i class="ti-car"></i></span>
-					<span class="s-text">Subcontractors</span>
+					<span class="s-text">Providers</span>
 				</a>
 				<ul>
-					<li><a href="{{ route('admin.provider.index') }}">List Subcontractors</a></li>
-					<li><a href="{{ route('admin.provider.create') }}">Add New Subcontractor</a></li>
+					<li><a href="{{ route('admin.provider.index') }}">List Providers</a></li>
+					<li><a href="{{ route('admin.provider.create') }}">Add New Provider</a></li>
 				</ul>
 			</li>
-			<!--
 			<li class="menu-title">Details</li>
 			<li>
 				<a href="{{ route('admin.map.index') }}" class="waves-effect waves-light">
@@ -58,35 +56,31 @@
 					<li><a href="{{ route('admin.provider.review') }}">Provider Ratings</a></li>
 				</ul>
 			</li>
-			-->
-			<li class="menu-title">Orders</li>
+			<li class="menu-title">Requests</li>
 			<li>
 				<a href="{{ route('admin.requests.index') }}" class="waves-effect  waves-light">
 					<span class="s-icon"><i class="ti-infinite"></i></span>
-					<span class="s-text">Order History</span>
+					<span class="s-text">Request History</span>
 				</a>
 			</li>
-			<!--
 			<li>
 				<a href="{{ route('admin.requests.scheduled') }}" class="waves-effect  waves-light">
 					<span class="s-icon"><i class="ti-palette"></i></span>
 					<span class="s-text">Scheduled Rides</span>
 				</a>
 			</li>
-			-->
 			<li class="menu-title">General</li>
 			<li class="with-sub">
 				<a href="#" class="waves-effect  waves-light">
 					<span class="s-caret"><i class="fa fa-angle-down"></i></span>
 					<span class="s-icon"><i class="ti-view-grid"></i></span>
-					<span class="s-text">Contracts</span>
+					<span class="s-text">Service Types</span>
 				</a>
 				<ul>
-					<li><a href="{{ route('admin.service.index') }}">List Contracts</a></li>
-					<!--<li><a href="{{ route('admin.service.create') }}">Add New Contract</a></li>-->
+					<li><a href="{{ route('admin.service.index') }}">List Service Types</a></li>
+					<li><a href="{{ route('admin.service.create') }}">Add New Service Type</a></li>
 				</ul>
 			</li>
-			<!--
 			<li class="with-sub">
 				<a href="#" class="waves-effect  waves-light">
 					<span class="s-caret"><i class="fa fa-angle-down"></i></span>
@@ -98,9 +92,7 @@
 					<li><a href="{{ route('admin.document.create') }}">Add New Document</a></li>
 				</ul>
 			</li>
-			-->
 
-			<!--
 			<li class="with-sub">
 				<a href="#" class="waves-effect  waves-light">
 					<span class="s-caret"><i class="fa fa-angle-down"></i></span>
@@ -112,7 +104,7 @@
 					<li><a href="{{ route('admin.promocode.create') }}">Add New Promocode</a></li>
 				</ul>
 			</li>
-			-->
+			
 			<li class="menu-title">Payment Details</li>
 			<li>
 				<a href="{{ route('admin.payment') }}" class="waves-effect  waves-light">
@@ -133,7 +125,7 @@
 					<span class="s-text">Site Settings</span>
 				</a>
 			</li>
-			<!--
+			
 			<li class="menu-title">Others</li>
 			<li>
 				<a href="{{ route('admin.help') }}" class="waves-effect waves-light">
@@ -147,7 +139,6 @@
 					<span class="s-text">Translations</span>
 				</a>
 			</li>
-			-->
 			<li class="menu-title">Account</li>
 			<li>
 				<a href="{{ route('admin.profile') }}" class="waves-effect  waves-light">

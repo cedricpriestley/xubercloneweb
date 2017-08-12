@@ -3,9 +3,6 @@
 @section('title', 'Request details ')
 
 @section('content')
-<pre>
-<?php //var_dump($request->service_type);exit;?>
-</pre>
 <div class="content-area py-1">
     <div class="container-fluid">
         <div class="box box-block bg-white">
@@ -16,51 +13,69 @@
             <div class="row">
                 <div class="col-md-6">
                     <dl class="row">
-                        <dt class="col-sm-4">Client Name :</dt>
-                        <dd class="col-sm-8">{{$request->user->first_name}} {{$request->user->last_name}}</dd>
+                        <dt class="col-sm-4">User Name :</dt>
+                        <dd class="col-sm-8">{{$request->user->first_name}}</dd>
 
-                        <dt class="col-sm-4">Contractor Name :</dt>
+                        <dt class="col-sm-4">Provider Name :</dt>
                         @if($request->provider)
-                        <dd class="col-sm-8">{{$request->provider->first_name}} {{$request->provider->last_name}}</dd>
+                        <dd class="col-sm-8">{{$request->provider->first_name}}</dd>
                         @else
                         <dd class="col-sm-8">Provider not yet assigned!</dd>
                         @endif
 
-                        <dt class="col-sm-4">Solicitation # :</dt>
-                        <dd class="col-sm-8">{{$request->service_type->solnbr}}</dd>
+                        <dt class="col-sm-4">Total Distance :</dt>
+                        <dd class="col-sm-8">{{$request->distance ? $request->distance : '-'}}</dd>
 
-                        <dt class="col-sm-4">Subject :</dt>
-                        <dd class="col-sm-8">{{$request->service_type->subject}}</dd>
+                        @if($request->status == 'SCHEDULED')
+                        <dt class="col-sm-4">Ride Scheduled Time :</dt>
+                        <dd class="col-sm-8">
+                            @if($request->schedule_at != "0000-00-00 00:00:00")
+                                {{date('jS \of F Y h:i:s A', strtotime($request->schedule_at)) }} 
+                            @else
+                                - 
+                            @endif
+                        </dd>
+                        @else
+                        <dt class="col-sm-4">Ride Start Time :</dt>
+                        <dd class="col-sm-8">
+                            @if($request->started_at != "0000-00-00 00:00:00")
+                                {{date('jS \of F Y h:i:s A', strtotime($request->started_at)) }} 
+                            @else
+                                - 
+                            @endif
+                         </dd>
 
-                        <dt class="col-sm-4">Agency :</dt>
-                        <dd class="col-sm-8">{{$request->service_type->agency}}</dd>
+                        <dt class="col-sm-4">Ride End Time :</dt>
+                        <dd class="col-sm-8">
+                            @if($request->finished_at != "0000-00-00 00:00:00") 
+                                {{date('jS \of F Y h:i:s A', strtotime($request->finished_at)) }}
+                            @else
+                                - 
+                            @endif
+                        </dd>
+                        @endif
 
-                        <dt class="col-sm-4">Office :</dt>
-                        <dd class="col-sm-8">{{$request->service_type->office}}</dd>
+                        <dt class="col-sm-4">Pickup Address :</dt>
+                        <dd class="col-sm-8">{{$request->s_address ? $request->s_address : '-' }}</dd>
 
-                        <dt class="col-sm-4">Address :</dt>
-                        <dd class="col-sm-8">{{$request->service_type->location}}</dd>
+                        <dt class="col-sm-4">Drop Address :</dt>
+                        <dd class="col-sm-8">{{$request->d_address ? $request->d_address : '-' }}</dd>
 
-                        <dt class="col-sm-4">Type :</dt>
-                        <dd class="col-sm-8">{{$request->service_type->type}}</dd>
-
-                        <dt class="col-sm-4">Set-aside :</dt>
-                        <dd class="col-sm-8">{{$request->service_type->setaside}}</dd>
-
-                        <dt class="col-sm-4">Posted Date :</dt>
-                        <dd class="col-sm-8">{{$request->service_type->date}}</dd>
-<!--
-                        <dt class="col-sm-4">Description :</dt>
-                        <dd class="col-sm-8">{{$request->service_type->desc}}</dd>
--->
                         @if($request->payment)
-<!--
-                        <dt class="col-sm-4">Price :</dt>
+                        <dt class="col-sm-4">Base Price :</dt>
                         <dd class="col-sm-8">{{ currency($request->payment->fixed) }}</dd>
--->
+
+                        <dt class="col-sm-4">Tax Price :</dt>
+                        <dd class="col-sm-8">{{ currency($request->payment->tax) }}</dd>
+
                         <dt class="col-sm-4">Total Amount :</dt>
                         <dd class="col-sm-8">{{ currency($request->payment->total) }}</dd>
                         @endif
+
+                        <dt class="col-sm-4">Ride Status : </dt>
+                        <dd class="col-sm-8">
+                            {{ $request->status }}
+                        </dd>
 
                     </dl>
                 </div>

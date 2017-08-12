@@ -31,12 +31,12 @@
                     <h5 class="col-md-6 no-padding"><strong>@lang('user.profile.mobile')</strong></h5>
                     <p class="col-md-6 no-padding">{{Auth::user()->mobile}}</p>
                 </div>
-<!--
+
                 <div class="col-md-6 pro-form">
                     <h5 class="col-md-6 no-padding"><strong>@lang('user.profile.wallet_balance')</strong></h5>
                     <p class="col-md-6 no-padding">{{currency(Auth::user()->wallet_balance)}}</p>
                 </div>
--->
+
                 <div class="col-md-6 pro-form">
                     <a class="form-sub-btn" href="{{url('edit/profile')}}">@lang('user.profile.edit')</a>
                 </div>

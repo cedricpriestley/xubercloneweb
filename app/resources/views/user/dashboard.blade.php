@@ -1,4 +1,4 @@
-@extends('user.layout.base2')
+@extends('user.layout.base')
 
 @section('title', 'Dashboard ')
 
@@ -8,87 +8,66 @@
     <div class="dash-content">
         <div class="row no-margin">
             <div class="col-md-12">
-                <h4 class="page-title">Browse Contracts</h4>
+                <h4 class="page-title">@lang('user.ride.ride_now')</h4>
             </div>
         </div>
         @include('common.notify')
         <div class="row no-margin">
-            <div class="col-md-12"> 
-            <!--<a href="{{ route('admin.service.create') }}" style="margin-left: 1em;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add Contract</a>-->
-            <table class="table table-striped table-bordered dataTable" id="table-2">
-                <thead>
-                    <tr>
-                        <!--<th>ID</th>-->
-                        <th>Sol #</th>
-                        <th>Subject</th>
-                        <th>Agency/Office/Location</th>
-                        <th>Type/Set-aside</th>
-                        <th>Price</th>
-                        <th>Posted On</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach($services as $index => $service)
-                    <tr>
-                        <!--<td>{{ $index + 1 }}</td>-->
-                        <td>{{ $service->solnbr }}</td>
-                        <td>{{ str_replace(",", ", ", $service->subject) }}</td>
-                        <td>{{ $service->agency }}/{{ $service->office }}/{{ $service->location }}</td>
-                        <td>{{ $service->type }} / {{ $service->setaside }}</td>
-                        <td>{{ currency($service->fixed) }}</td>
-                        <td>{{ $service->date }}</td>
-                        <td><form action="{{url('confirm/ride')}}" method="GET" onkeypress="return disableEnterKey(event);">
-                        <input type="hidden" 
-                                name="service_type"
-                                value="{{$service->id}}"
-                                id="service_{{$service->id}}">
+            <div class="col-md-6">
+                <form action="{{url('confirm/ride')}}" method="GET" onkeypress="return disableEnterKey(event);">
                     <div class="input-group dash-form">
-                        <input type="text" class="form-control" id="origin-input" name="s_address"  placeholder="Enter pickup location" value="301 5th Avenue, New York, NY, United States">
+                        <input type="text" class="form-control" id="origin-input" name="s_address"  placeholder="Enter pickup location">
                     </div>
 
                     <div class="input-group dash-form">
-                        <input type="text" class="form-control" id="destination-input" name="d_address"  placeholder="Enter drop location" value="Chobani SoHo, Prince Street, New York, NY, United States">
+                        <input type="text" class="form-control" id="destination-input" name="d_address"  placeholder="Enter drop location" >
                     </div>
 
-                    <input type="hidden" name="s_latitude" id="origin_latitude" value="40.74653850">
-                    <input type="hidden" name="s_longitude" id="origin_longitude" value="-73.98595190">
-                    <input type="hidden" name="d_latitude" id="destination_latitude" value="40.72575360">
-                    <input type="hidden" name="d_longitude" id="destination_longitude" value="-74.00113820">
+                    <input type="hidden" name="s_latitude" id="origin_latitude">
+                    <input type="hidden" name="s_longitude" id="origin_longitude">
+                    <input type="hidden" name="d_latitude" id="destination_latitude">
+                    <input type="hidden" name="d_longitude" id="destination_longitude">
                     <input type="hidden" name="current_longitude" id="long">
                     <input type="hidden" name="current_latitude" id="lat">
-                    <button type="submit"  class="full-primary-btn fare-btn">Buy</button>
-                </form></td>
-                    </tr>
-                @endforeach
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <!--<th>ID</th>-->
-                        <th>Sol #</th>
-                        <th>Subject</th>
-                        <th>Agency/Office/Location</th>
-                        <th>Type/Set-aside</th>
-                        <th>Price</th>
-                        <th>Posted On</th>
-                        <th>Action</th>
-                    </tr>
-                </tfoot>
-            </table>
 
+                    <div class="car-detail">
+
+                        @foreach($services as $service)
+                        <div class="car-radio">
+                            <input type="radio" 
+                                name="service_type"
+                                value="{{$service->id}}"
+                                id="service_{{$service->id}}"
+                                @if ($loop->first) checked="checked" @endif>
+                            <label for="service_{{$service->id}}">
+                                <div class="car-radio-inner">
+                                    <div class="img"><img src="{{image($service->image)}}"></div>
+                                    <div class="name"><span>{{$service->name}}</span></div>
+                                </div>
+                            </label>
+                        </div>
+                        @endforeach
+
+
+                    </div>
+
+                    <button type="submit"  class="full-primary-btn fare-btn">@lang('user.ride.ride_now')</button>
+
+                </form>
+            </div>
+
+            <div class="col-md-6">
+                <div class="map-responsive">
+                    <div id="map" style="width: 100%; height: 450px;"></div>
+                </div> 
             </div>
         </div>
     </div>
 </div>
-<style>
-    table {
-        font-size:12px; 
-    }
-</style>
+
 @endsection
 
 @section('scripts')    
-<!--
 <script type="text/javascript">
     var current_latitude = 13.0574400;
     var current_longitude = 80.2482605;
@@ -124,7 +103,7 @@
 
 <script type="text/javascript" src="{{ asset('asset/js/map.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&libraries=places&callback=initMap" async defer></script>
--->
+
 <script type="text/javascript">
     function disableEnterKey(e)
     {
@@ -138,10 +117,5 @@
             return e.preventDefault();
     }
 </script>
-<style>
-    #origin-input
-    ,#destination-input {
-        display:none;
-    }
-</style>
+
 @endsection

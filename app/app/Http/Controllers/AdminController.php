@@ -20,8 +20,6 @@ use App\ProviderService;
 use App\UserRequestRating;
 use App\UserRequestPayment;
 
-use DB;
-
 class AdminController extends Controller
 {
     /**
@@ -180,11 +178,8 @@ class AdminController extends Controller
                 'surge_percentage' => 'required|numeric|min:0|max:100',
                 'commission_percentage' => 'required|numeric|min:0|max:100',
                 'surge_trigger' => 'required|integer|min:0',
-                'minimum_price' => 'required|integer|min:0',
                 'currency' => 'required'
             ]);
-
-        $old_minimum_price = Setting::get('minimum_price');
 
         Setting::set('CARD', $request->has('CARD') ? 1 : 0 );
         Setting::set('CASH', $request->has('CASH') ? 1 : 0 );
@@ -195,13 +190,8 @@ class AdminController extends Controller
         Setting::set('surge_percentage', $request->surge_percentage);
         Setting::set('commission_percentage', $request->commission_percentage);
         Setting::set('surge_trigger', $request->surge_trigger);
-        Setting::set('minimum_price', $request->minimum_price);
         Setting::set('currency', $request->currency);
         Setting::save();
-
-        if ($request->minimum_price >= $old_minimum_price) {
-            $affected = DB::table('service_types')->where('fixed', '<', $old_minimum_price)->update(array('fixed' => $request->minimum_price));
-        }
 
         return back()->with('flash_success','Settings Updated Successfully');
     }

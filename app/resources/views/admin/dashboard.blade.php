@@ -15,7 +15,7 @@
 			<div class="box box-block bg-white tile tile-1 mb-2">
 				<div class="t-icon right"><span class="bg-danger"></span><i class="ti-rocket"></i></div>
 				<div class="t-content">
-					<h6 class="text-uppercase mb-1">Total No. of Purchased Contracts</h6>
+					<h6 class="text-uppercase mb-1">Total No. of Rides</h6>
 					<h1 class="mb-1">{{$rides->count()}}</h1>
 					<span class="tag tag-danger mr-0-5">@if($cancel_rides == 0) 0.00 @else {{round($cancel_rides/$rides->count(),2)}}% @endif</span>
 					<span class="text-muted font-90">% down from cancelled Request</span>
@@ -28,7 +28,7 @@
 				<div class="t-content">
 					<h6 class="text-uppercase mb-1">Revenue</h6>
 					<h1 class="mb-1">{{currency($revenue)}}</h1>
-					<i class="fa fa-caret-up text-success mr-0-5"></i><span>from {{$rides->count()}} Bought Contracts</span>
+					<i class="fa fa-caret-up text-success mr-0-5"></i><span>from {{$rides->count()}} Rides</span>
 				</div>
 			</div>
 		</div>
@@ -36,7 +36,7 @@
 			<div class="box box-block bg-white tile tile-1 mb-2">
 				<div class="t-icon right"><span class="bg-primary"></span><i class="ti-view-grid"></i></div>
 				<div class="t-content">
-					<h6 class="text-uppercase mb-1">Total FBO Contracts</h6>
+					<h6 class="text-uppercase mb-1">Service Types</h6>
 					<h1 class="mb-1">{{$service}}</h1>
 				</div>
 			</div>
@@ -45,9 +45,9 @@
 			<div class="box box-block bg-white tile tile-1 mb-2">
 				<div class="t-icon right"><span class="bg-warning"></span><i class="ti-archive"></i></div>
 				<div class="t-content">
-					<h6 class="text-uppercase mb-1">Cancelled Contracts</h6>
+					<h6 class="text-uppercase mb-1">Cancelled Rides</h6>
 					<h1 class="mb-1">{{$cancel_rides}}</h1>
-					<!--<i class="fa fa-caret-down text-danger mr-0-5"></i><span>for @if($cancel_rides == 0) 0.00 @else {{round($cancel_rides/$rides->count(),2)}}% @endif Rides</span>-->
+					<i class="fa fa-caret-down text-danger mr-0-5"></i><span>for @if($cancel_rides == 0) 0.00 @else {{round($cancel_rides/$rides->count(),2)}}% @endif Rides</span>
 				</div>
 			</div>
 		</div>
@@ -57,7 +57,7 @@
 		<div class="col-md-12">
 				<div class="box bg-white">
 					<div class="box-block clearfix">
-						<h5 class="float-xs-left">Recent Purchases</h5>
+						<h5 class="float-xs-left">Recent Rides</h5>
 						<div class="float-xs-right">
 							<button class="btn btn-link btn-sm text-muted" type="button"><i class="ti-close"></i></button>
 						</div>
@@ -71,7 +71,7 @@
 								<td>{{$ride->user->first_name}} {{$ride->user->last_name}}</td>
 								<td>
 									@if($ride->status != "CANCELLED")
-										<a class="text-primary" href="{{route('admin.requests.show',$ride->id)}}"><span class="underline">View Order Details</span></a>
+										<a class="text-primary" href="{{route('admin.requests.show',$ride->id)}}"><span class="underline">View Ride Details</span></a>
 									@else
 										<span>No Details Found </span>
 									@endif									
@@ -99,8 +99,7 @@
 
 		</div>
 
-		<!--
-    <div class="box box-block bg-white">
+		<div class="box box-block bg-white">
 				<div class="clearfix mb-1">
 					<h5 class="float-xs-left">Rides statistics</h5>
 					<div class="float-xs-right">
@@ -122,7 +121,6 @@
 					</div>
 				</div>
 			</div>
-      -->
 
 	</div>
 </div>
